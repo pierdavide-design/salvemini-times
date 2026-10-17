@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101110">
+    <meta name="description" content="Salvemini Times — cronaca, cultura e idee. Con rigore, senza rumore.">
+    <title>Salvemini Times — Quotidiano contemporaneo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="salvemini.css?v=8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+    <script src="salvemini.js?v=10" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-brand">
+        <button class="icon-button menu-toggle" type="button" aria-label="Apri il menu" aria-expanded="false" title="Apri il menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+        <a class="wordmark" href="#inizio" aria-label="Salvemini Times home"><span class="wordmark-icon">S<span>.</span></span><span class="wordmark-name">SALVEMINI <b>TIMES</b><small>ACTA DIURNA · CRONACHE E OPINIONI</small></span></a>
+      </div>
+      <form class="top-search" role="search" id="search-form">
+        <input id="site-search" name="q" type="search" placeholder="Cerca un argomento, una storia…" autocomplete="off" aria-label="Cerca un argomento o una storia">
+        <button type="submit" aria-label="Cerca"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg></button>
+      </form>
+      <div class="topbar-actions">
+        <span class="ai-status" id="ai-status"><i></i><span>Controllo editoriale</span></span>
+        <button class="account-button" id="account-open" type="button">Accedi</button>
+        <button class="account-button account-register" id="register-open" type="button">Diventa redattore <span aria-hidden="true">↗</span></button>
+        <button class="write-button requires-writer" id="editor-open" type="button" aria-label="Scrivi un nuovo articolo" title="Scrivi un nuovo articolo" hidden><span aria-hidden="true">+</span><span>Scrivi</span></button>
+        <button class="profile-button" id="profile-button" type="button" hidden><span class="profile-mark" id="profile-mark">S</span><span id="profile-name"></span><span aria-hidden="true">⌄</span></button>
+        <div class="profile-menu" id="profile-menu" hidden><button id="gemini-settings-open" type="button">Configura Gemini</button><button id="signout-button" type="button">Esci dall’account</button></div>
+      </div>
+    </header>
+
+    <aside class="sidebar" aria-label="Navigazione">
+      <nav class="sidebar-nav">
+        <button class="sidebar-link active" type="button" data-view="home"><span class="sidebar-icon">⌂</span><span>Home</span></button>
+        <button class="sidebar-link" type="button" data-view="trending"><span class="sidebar-icon">↗</span><span>In tendenza</span></button>
+        <button class="sidebar-link" type="button" data-view="video"><span class="sidebar-icon">▷</span><span>Video</span></button>
+        <button class="sidebar-link" type="button" data-view="saved"><span class="sidebar-icon">▱</span><span>Salvati</span></button>
+        <span class="sidebar-divider"></span>
+        <span class="sidebar-label">ESPLORA</span>
+        <button class="sidebar-link" type="button" data-category="Attualità"><span class="sidebar-icon">◉</span><span>Attualità</span></button>
+        <button class="sidebar-link" type="button" data-category="Mondo"><span class="sidebar-icon">◎</span><span>Mondo</span></button>
+        <button class="sidebar-link" type="button" data-category="Cultura"><span class="sidebar-icon">▧</span><span>Cultura</span></button>
+        <button class="sidebar-link" type="button" data-category="Ambiente"><span class="sidebar-icon">✳</span><span>Ambiente</span></button>
+        <button class="sidebar-link" type="button" data-category="Tecnologia"><span class="sidebar-icon">⌘</span><span>Tecnologia</span></button>
+        <span class="sidebar-divider"></span>
+        <span class="sidebar-label">TEMPO LIBERO</span>
+        <button class="sidebar-link" type="button" data-category="Gaming"><span class="sidebar-icon">◈</span><span>Gaming</span></button>
+        <button class="sidebar-link" type="button" data-category="Cinema e serie"><span class="sidebar-icon">▣</span><span>Cinema e serie</span></button>
+        <button class="sidebar-link" type="button" data-category="Musica"><span class="sidebar-icon">♫</span><span>Musica</span></button>
+        <button class="sidebar-link" type="button" data-category="Sport"><span class="sidebar-icon">◎</span><span>Sport</span></button>
+        <button class="sidebar-link" type="button" data-category="Viaggi"><span class="sidebar-icon">⌖</span><span>Viaggi</span></button>
+        <button class="sidebar-link" type="button" data-category="Cucina"><span class="sidebar-icon">✳</span><span>Cucina</span></button>
+        <span class="sidebar-divider"></span>
+        <span class="sidebar-label">REDAZIONE</span>
+        <button class="sidebar-link editor-link requires-writer" id="editor-sidebar" type="button" hidden><span class="sidebar-icon">＋</span><span>Nuovo articolo</span></button>
+      </nav>
+      <div class="sidebar-footer">SALVEMINI TIMES · MMXXVI<br><span>Veritas, non rumor.</span></div>
+    </aside>
+
+    <main class="app-content" id="inizio">
+      <section class="home-intro">
+        <div><span class="section-kicker">VENERDÌ 16 OTTOBRE 2026 <span class="intro-dot"></span> EDIZIONE DEL GIORNO</span><h1>La notizia,<br><em>con prospettiva.</em></h1></div>
+        <p>Fatti, contesto e voci. Con rigore, senza rumore.</p>
+      </section>
+
+      <section class="trending-section" id="trending">
+        <div class="feed-heading"><div><span class="section-kicker">IL POLSO DELLA REDAZIONE</span><h2>In evidenza <span class="trending-mark">↗</span></h2></div><span class="feed-caption">EDIZIONE DEL 16 OTTOBRE</span></div>
+        <div class="trending-grid" id="trending-grid"></div>
+        <p class="section-empty" id="trending-empty" hidden>La redazione sta preparando la prima edizione.</p>
+      </section>
+
+      <section class="recommendations-section" id="recommendations-section" hidden>
+        <div class="feed-heading"><div><span class="section-kicker">IN BASE A LETTURE E PREFERENZE</span><h2>Consigliati <em>per te.</em></h2></div><span class="feed-caption">AGGIORNATI IN TEMPO REALE</span></div>
+        <div class="story-grid recommendations-grid" id="recommendations-grid"></div>
+      </section>
+
+      <section class="video-section" id="video-section">
+        <div class="feed-heading"><div><span class="section-kicker">IMMAGINI, VOCI, TESTIMONIANZE</span><h2>Salvemini <em>in video.</em></h2></div><span class="feed-caption">VIDEO DI REDAZIONE</span></div>
+        <div class="video-grid" id="video-grid"></div>
+        <p class="section-empty" id="video-empty" hidden>La sezione video si popolerà con i prossimi reportage.</p>
+      </section>
+
+      <section class="feed-section" id="storie">
+        <div class="feed-heading feed-heading-list"><div><span class="section-kicker" id="feed-kicker">SCELTE PER TE</span><h2 id="feed-title">Tutte le storie</h2></div>
+          <label class="sort-control" for="sort-order"><span>Ordina per</span><select id="sort-order"><option value="trending">Tendenze</option><option value="recent">Più recenti</option></select></label>
+        </div>
+        <div class="category-bar" role="group" aria-label="Filtra per argomento">
+          <button class="category-button selected" type="button" data-category="Tutte" aria-pressed="true">Tutti</button>
+          <button class="category-button" type="button" data-category="Attualità" aria-pressed="false">Attualità</button>
+          <button class="category-button" type="button" data-category="Mondo" aria-pressed="false">Mondo</button>
+          <button class="category-button" type="button" data-category="Cultura" aria-pressed="false">Cultura</button>
+          <button class="category-button" type="button" data-category="Ambiente" aria-pressed="false">Ambiente</button>
+          <button class="category-button" type="button" data-category="Tecnologia" aria-pressed="false">Tecnologia</button>
+          <button class="category-button" type="button" data-category="Gaming" aria-pressed="false">Gaming</button>
+          <button class="category-button" type="button" data-category="Cinema e serie" aria-pressed="false">Cinema e serie</button>
+          <button class="category-button" type="button" data-category="Musica" aria-pressed="false">Musica</button>
+          <button class="category-button" type="button" data-category="Sport" aria-pressed="false">Sport</button>
+          <button class="category-button" type="button" data-category="Viaggi" aria-pressed="false">Viaggi</button>
+          <button class="category-button" type="button" data-category="Cucina" aria-pressed="false">Cucina</button>
+          <button class="category-button" type="button" data-category="Video" aria-pressed="false">Video</button>
+        </div>
+        <div class="search-status" id="search-status" aria-live="polite"></div>
+        <div class="story-grid" id="story-grid" aria-live="polite"></div>
+        <div class="empty-state" hidden><p id="empty-message">Nessun articolo trovato. Prova un altro argomento.</p><button id="empty-register" type="button">Apri la redazione <span aria-hidden="true">↗</span></button></div>
+        <button class="load-more" id="load-more" type="button">Carica altre storie <span aria-hidden="true">↓</span></button>
+      </section>
+    </main>
+
+    <dialog class="article-dialog" aria-labelledby="dialog-title">
+      <button class="dialog-close" type="button" aria-label="Chiudi">×</button>
+      <div class="dialog-media"><img src="" alt=""><span class="dialog-media-label"></span></div>
+      <div class="dialog-video" id="dialog-video" hidden></div>
+      <div class="dialog-content"><span class="section-kicker dialog-category"></span><h2 id="dialog-title"></h2><p class="dialog-summary"></p><div class="dialog-byline"></div><div class="dialog-engagement"><span id="dialog-views"></span><button class="dialog-like" type="button" data-action="like-current" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.8c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11a4.8 4.8 0 0 1 8.8-2.6 4.8 4.8 0 0 1 8.8 2.6Z"></path></svg><span>0</span></button></div><div class="dialog-pdf-wrap" id="dialog-pdf-wrap" hidden><iframe id="dialog-pdf" title="Documento PDF originale"></iframe></div><div class="dialog-body"></div><button class="dialog-save" type="button" data-action="save-current">▱ <span>Salva articolo</span></button></div>
+    </dialog>
+
+    <dialog class="auth-dialog" aria-labelledby="auth-title">
+      <button class="dialog-close auth-close" type="button" aria-label="Chiudi">×</button>
+      <div class="auth-brand">S<span>.</span></div>
+      <span class="section-kicker">SALVEMINI TIMES · REDAZIONE</span>
+      <h2 id="auth-title">Bentornato.</h2>
+      <p class="auth-intro" id="auth-intro">Accedi per entrare nella redazione.</p>
+      <form id="auth-form">
+        <label id="auth-name-label" for="auth-name" hidden>Nome e cognome</label><input id="auth-name" name="name" autocomplete="name" placeholder="Nome e cognome" hidden>
+        <label for="auth-email">Indirizzo email</label><input id="auth-email" name="email" type="email" autocomplete="email" required placeholder="nome@esempio.it">
+        <label for="auth-password">Password</label><input id="auth-password" name="password" type="password" autocomplete="current-password" minlength="10" required placeholder="Almeno 10 caratteri">
+        <button class="auth-submit" id="auth-submit" type="submit">Accedi <span aria-hidden="true">↗</span></button>
+      </form>
+      <p class="auth-error" id="auth-error" aria-live="polite"></p>
+      <p class="auth-toggle-line"><span id="auth-toggle-copy">Non hai un account?</span> <button id="auth-mode-toggle" type="button">Diventa redattore</button></p>
+    </dialog>
+
+    <dialog class="gemini-settings-dialog" aria-labelledby="gemini-settings-title">
+      <button class="dialog-close gemini-settings-close" type="button" aria-label="Chiudi">×</button>
+      <div class="auth-brand">S<span>.</span></div>
+      <span class="section-kicker">SALVEMINI TIMES · IMPOSTAZIONI</span>
+      <h2 id="gemini-settings-title">Collega <em>Gemini.</em></h2>
+      <p class="auth-intro">La chiave viene inviata solo al server locale, verificata con Google AI Studio e conservata fuori dal browser. Non verrà mostrata di nuovo.</p>
+      <form id="gemini-settings-form">
+        <label for="gemini-api-key">Chiave Google AI Studio</label><input id="gemini-api-key" name="apiKey" type="password" autocomplete="new-password" required minlength="20" maxlength="300" placeholder="Incolla la chiave Google">
+        <label for="gemini-model">Modello Gemini</label><input id="gemini-model" name="model" value="gemini-2.5-flash" required maxlength="80" spellcheck="false">
+        <button class="auth-submit" id="gemini-save-button" type="submit">Verifica e salva <span aria-hidden="true">↗</span></button>
+      </form>
+      <p class="auth-error" id="gemini-settings-status" aria-live="polite"></p>
+      <p class="gemini-settings-note">Il free tier ha quote soggette a limiti e condizioni Google. I testi inviati vengono elaborati da Google: non inviare bozze riservate senza autorizzazione.</p>
+    </dialog>
+
+    <dialog class="editor-dialog" aria-labelledby="editor-title">
+      <button class="dialog-close editor-close" type="button" aria-label="Chiudi">×</button>
+      <div class="editor-layout">
+        <section class="editor-form-column">
+          <span class="section-kicker">SALVEMINI TIMES · DESK</span><h2 id="editor-title">Nuovo <em>pezzo.</em></h2>
+          <p class="editor-intro">La verifica editoriale precede ogni pubblicazione. Il testo originale non viene riscritto.</p>
+          <form id="editor-form">
+            <label for="article-title">Titolo</label><input id="article-title" name="title" required maxlength="130" placeholder="Titolo del pezzo">
+            <div class="editor-fields-row"><div><label for="article-category">Sezione</label><select id="article-category" name="category"><option>Attualità</option><option>Mondo</option><option>Cultura</option><option>Ambiente</option><option>Tecnologia</option><option>Gaming</option><option>Cinema e serie</option><option>Musica</option><option>Sport</option><option>Viaggi</option><option>Cucina</option><option>Video</option></select></div><div><label for="article-kind">Formato</label><select id="article-kind" name="kind"><option value="article">Articolo</option><option value="video">Video</option></select></div></div>
+            <label for="article-summary">Sommario <span>facoltativo</span></label><textarea id="article-summary" name="summary" rows="2" maxlength="600" placeholder="Una riga per presentare la storia"></textarea>
+            <div id="video-url-field" hidden><label for="article-video-url">Link YouTube</label><input id="article-video-url" type="url" placeholder="https://www.youtube.com/watch?v=…"></div>
+            <label for="article-cover">Copertina <span>URL immagine</span></label><input id="article-cover" name="cover" type="url" placeholder="https://…">
+            <label class="upload-control" for="cover-file"><span>↑</span> Carica una copertina dal dispositivo<input id="cover-file" type="file" accept="image/*"></label>
+            <div class="pdf-upload-panel"><label for="pdf-file">Manoscritto PDF <span>fino a 14 MB · estrazione testo per la revisione AI</span></label><label class="upload-control" for="pdf-file"><span>↑</span> Scegli un PDF<input id="pdf-file" type="file" accept="application/pdf"></label><p class="pdf-status" id="pdf-status">Il documento originale verrà conservato nell’articolo.</p></div>
+            <label for="article-body">Testo <span id="body-origin">scrivilo o incollalo</span></label><textarea id="article-body" name="body" rows="9" required placeholder="Scrivi il testo. Le parole non verranno riscritte."></textarea>
+            <div class="editor-assistant"><span class="assistant-icon">✳</span><span><strong>Revisione con IA, testo inviolato</strong><small>Controlla pertinenza e qualità, propone sezione e impaginazione. Non modifica né sostituisce le parole.</small></span></div>
+            <div class="editor-actions"><button class="prepare-button" id="prepare-article" type="button">Prepara anteprima</button><button class="publish-button" type="submit">Pubblica articolo <span>↗</span></button></div>
+            <p class="editor-status" id="editor-status" aria-live="polite"></p>
+          </form>
+        </section>
+        <aside class="editor-preview-column" aria-label="Anteprima articolo">
+          <div class="preview-topline"><span>ANTEPRIMA</span><span class="preview-live"><i></i> BOZZA</span></div>
+          <div class="preview-cover"><img id="cover-preview" alt="Anteprima copertina" hidden><span id="cover-placeholder">La copertina apparirà qui</span><span class="preview-cover-tag" id="preview-category">ATTUALITÀ</span></div>
+          <div class="preview-meta">SALVEMINI TIMES <i></i> ANTEPRIMA</div>
+          <h3 id="preview-title">Il titolo dell’articolo</h3>
+          <p id="preview-summary">Il sommario accompagnerà il titolo nella home.</p>
+          <div class="preview-rule"></div>
+          <span class="preview-body-label">TESTO ORIGINALE</span><p class="preview-body" id="preview-body">Qui vedrai il testo esattamente come inserito.</p>
+          <p class="integrity-check" id="integrity-check">Le parole non sono state modificate.</p>
+        </aside>
+      </div>
+    </dialog>
+    <div class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
